@@ -320,7 +320,7 @@
   }
 
   .popper:hover,
-  .popper:hover > #arrow::before {
+  .popper:hover > .arrow::before {
     background: var(--popper-theme-background-color-hover);
   }
 

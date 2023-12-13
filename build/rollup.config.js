@@ -51,13 +51,17 @@ const baseConfig = {
       }),
       // Process only `<style module>` blocks.
       PostCSS({
+        extract: true,
         modules: {
           generateScopedName: "[local]___[hash:base64:5]",
         },
         include: /&module=.*\.css$/,
       }),
       // Process all `<style>` blocks except `<style module>`.
-      PostCSS({ include: /(?<!&module=.*)\.css$/ }),
+      PostCSS({ 
+        extract: true,
+        include: /(?<!&module=.*)\.css$/,
+      }),
       commonjs(),
     ],
     babel: {

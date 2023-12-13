@@ -299,6 +299,10 @@
       useClickAway(popperContainerNode, closePopper);
     }
   });
+
+  defineExpose({
+    isOpen: modifiedIsOpen,
+  });
 </script>
 
 <style scoped>

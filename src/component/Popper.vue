@@ -194,7 +194,7 @@
     show,
   } = toRefs(props);
 
-  const { isOpen, open, close } = usePopper({
+  const { effectivePlacement, isOpen, open, close } = usePopper({
     arrowPadding,
     emit,
     locked,
@@ -302,6 +302,7 @@
 
   defineExpose({
     isOpen: modifiedIsOpen,
+    effectivePlacement,
   });
 </script>
 

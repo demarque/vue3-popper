@@ -1,4 +1,4 @@
-import { toRefs, watch, nextTick, onBeforeUnmount, reactive } from "vue";
+import { toRefs, watch, nextTick, onBeforeUnmount, reactive, unref } from "vue";
 import { createPopper } from "@popperjs/core/lib/popper-lite.js";
 import preventOverflow from "@popperjs/core/lib/modifiers/preventOverflow.js";
 import flip from "@popperjs/core/lib/modifiers/flip.js";
@@ -19,6 +19,7 @@ export default function usePopper({
 }) {
   const state = reactive({
     isOpen: false,
+    effectivePlacement: unref(placement),
     popperInstance: null,
   });
 
@@ -85,6 +86,14 @@ export default function usePopper({
           options: {
             offset: [toInt(offsetSkid.value), toInt(offsetDistance.value)],
           },
+        },
+        {
+          name: 'effectivePlacement',
+          enabled: true,
+          phase: 'afterWrite',
+          fn(arg)  {
+            state.effectivePlacement = arg.state.placement;
+          }
         },
       ],
     });

@@ -13,7 +13,7 @@
       @keyup.esc="closePopper"
     >
       <!-- The default slot to trigger the popper  -->
-      <slot :close="close" :isOpen="modifiedIsOpen" />
+      <slot :close="closePopperDebounce" :isOpen="modifiedIsOpen" />
     </div>
     <Transition name="fade">
       <div
@@ -22,7 +22,7 @@
         class="popper"
         ref="popperNode"
       >
-        <slot name="content" :close="close" :isOpen="modifiedIsOpen">
+        <slot name="content" :close="closePopperDebounce" :isOpen="modifiedIsOpen">
           {{ content }}
         </slot>
         <Arrow v-if="arrow" />
@@ -302,8 +302,8 @@
 
   defineExpose({
     isOpen: modifiedIsOpen,
-    close,
-    open,
+    close: closePopperDebounce,
+    open: openPopperDebounce,
     effectivePlacement,
   });
 </script>

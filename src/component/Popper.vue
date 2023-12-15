@@ -302,6 +302,8 @@
 
   defineExpose({
     isOpen: modifiedIsOpen,
+    close,
+    open,
     effectivePlacement,
   });
 </script>
